@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "LanguageCards",
+    "slug": "LanguageCards",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "LanguageCards"
+}
