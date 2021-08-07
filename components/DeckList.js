@@ -1,23 +1,28 @@
 import React, {Component} from 'react' 
-import {View, Text} from 'react-native'
+import {View, Text, Button} from 'react-native'
 import {connect} from 'react-redux'
 import { questions } from '../utils/questions';
+import { useNavigation } from '@react-navigation/native';
 //import {showDecks} from '../actions/index'
 //import {getQuestions} from '../utils/api'
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-class DeckList extends Component{
+function DeckList (props){
    
    
         
       
-      render() {
+    
 
-        const { questions} = this.props;
+const navigation = useNavigation()
+     
+
+        const { questions} = props;
         console.log(questions)
         const decks = Object.keys(questions)
         console.log(decks)
+       
         
         return (
             <View>
@@ -25,8 +30,12 @@ class DeckList extends Component{
                 <h1>Decks</h1>
               <ul>
                 {decks.map((deck)=>(
-                  <li>
-                    <p>{deck}</p>
+                  <li key={deck}>
+                    <p>{deck}</p><br>
+                    </br>
+                    <p>{Object.keys(questions[deck].questions).length
+                   } cards</p>
+                   <button onClick={()=>navigation.navigate('DeckView', {id:deck})}>Select Deck</button>
                   </li>
                 ))}
               </ul>
@@ -35,7 +44,7 @@ class DeckList extends Component{
          
         );
       }
-    }
+    
     
     function mapStateToProps(state) {
      
