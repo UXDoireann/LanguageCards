@@ -1,5 +1,5 @@
 import React, {Component} from 'react' 
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 import { questions } from '../utils/questions';
 
@@ -9,23 +9,24 @@ class DeckView extends Component{
 
     render(){
 
-        
+      const{deck}=this.props.route.params
+      console.log(deck)
 
         return(
             <View>
                 <Text>
-                    <p>Selected Deck</p>
+                   {deck}
                 </Text>
             </View>
         )
     }
 }
 
-function mapStateToProps(questions, { navigation, route }) {
+function mapStateToProps(questions, params) {
+   return{
+       questions
    
-    return {
-      route,
-      navigation
+
     };
   }
 

@@ -15,11 +15,11 @@ const Stack = createStackNavigator();
 const MainNav =()=>(
   <Stack.Navigator>
     <Stack.Screen
-    name="Home"
+    name="Decks"
     component={DeckList}
     style={styles.container}/>
     <Stack.Screen
-    name="DeckView"
+    name="Selected Deck"
     component={DeckView}/>
   </Stack.Navigator>
 )
