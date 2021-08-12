@@ -1,24 +1,25 @@
 import React, {Component} from 'react' 
-import {View, Text, Button} from 'react-native'
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import {connect} from 'react-redux'
 import { questions } from '../utils/questions';
 import { useNavigation } from '@react-navigation/native';
+import{lightPurp, pink, blue, red, orange}from '../utils/colors'
 //import {showDecks} from '../actions/index'
 //import {getQuestions} from '../utils/api'
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-function DeckList (props){
+class DeckList extends Component{
    
    
         
       
     
 
-const navigation = useNavigation()
+render(){
      
 
-        const { questions} = props;
+        const { questions} = this.props;
         console.log(questions)
         const decks = Object.keys(questions)
         console.log(decks)
@@ -35,7 +36,7 @@ const navigation = useNavigation()
                     </br>
                     <p>{Object.keys(questions[deck].questions).length
                    } cards</p>
-                   <button onClick={()=>navigation.navigate('DeckView', {id:deck})}>Select Deck</button>
+                   <TouchableOpacity style={styles.Buttons} onPress={()=>this.props.navigation.navigate('DeckView', {id:deck})}><Text>Select Deck</Text></TouchableOpacity>
                   </li>
                 ))}
               </ul>
@@ -44,7 +45,18 @@ const navigation = useNavigation()
          
         );
       }
-    
+}
+
+const styles = StyleSheet.create({
+
+  Buttons:{
+    backgroundColor:lightPurp,
+    width:250,
+    marginTop: 5,
+    marginBottom:5,
+    borderRadius:10
+  }
+})
     
     function mapStateToProps(state) {
      

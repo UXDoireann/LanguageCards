@@ -9,7 +9,7 @@ class DeckView extends Component{
 
     render(){
 
-        const {navigation, route} = props
+        
 
         return(
             <View>
@@ -21,4 +21,12 @@ class DeckView extends Component{
     }
 }
 
-export default DeckView
+function mapStateToProps(questions, { navigation, route }) {
+   
+    return {
+      route,
+      navigation
+    };
+  }
+
+export default connect (mapStateToProps)(DeckView)

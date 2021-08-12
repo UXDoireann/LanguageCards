@@ -7,30 +7,35 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createStackNavigator } from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
-//import { createAppContainer } from 'react-navigation'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
+
 
 const Stack = createStackNavigator();
+const MainNav =()=>(
+  <Stack.Navigator>
+    <Stack.Screen
+    name="Home"
+    component={DeckList}
+    style={styles.container}/>
+    <Stack.Screen
+    name="DeckView"
+    component={DeckView}/>
+  </Stack.Navigator>
+)
+
+
 
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
+        
         <NavigationContainer>
-          <DeckList/>
-        <View style={styles.container}>
-        <Stack.Screen
-                name="DeckList"
-                component={DeckList}
-                
-              />
-              <Stack.Screen
-                name='DeckView'
-                component={DeckView}
-               
-              />
-        </View>
+                <MainNav/>
         </NavigationContainer> 
+      
       </Provider>
     )
   }
@@ -41,7 +46,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffff',
     alignItems: 'center',
     justifyContent: 'center',
   },
